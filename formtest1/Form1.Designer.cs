@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             lbxProducts = new ListBox();
             lblProducts = new Label();
             btnAddToCart = new Button();
@@ -36,6 +38,8 @@
             btnRemoveFromCart = new Button();
             btnRemoveAllInCart = new Button();
             lblBakiye = new Label();
+            listView1 = new ListView();
+            ımageList1 = new ImageList(components);
             SuspendLayout();
             // 
             // lbxProducts
@@ -123,11 +127,28 @@
             lblBakiye.Text = "label1";
             lblBakiye.Click += bakiye_Click;
             // 
+            // listView1
+            // 
+            listView1.Location = new Point(350, 81);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(392, 232);
+            listView1.TabIndex = 8;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
+            // 
+            // ımageList1
+            // 
+            ımageList1.ColorDepth = ColorDepth.Depth8Bit;
+            ımageList1.ImageStream = (ImageListStreamer)resources.GetObject("ımageList1.ImageStream");
+            ımageList1.TransparentColor = Color.Transparent;
+            ımageList1.Images.SetKeyName(0, "bmw.jpg");
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(789, 448);
+            Controls.Add(listView1);
             Controls.Add(lblBakiye);
             Controls.Add(btnRemoveAllInCart);
             Controls.Add(btnRemoveFromCart);
@@ -153,5 +174,7 @@
         private Button btnRemoveFromCart;
         private Button btnRemoveAllInCart;
         private Label lblBakiye;
+        private ListView listView1;
+        private ImageList ımageList1;
     }
 }

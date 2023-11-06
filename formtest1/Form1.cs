@@ -1,3 +1,4 @@
+using formtest1.Properties;
 using System.Windows.Forms;
 
 namespace formtest1
@@ -103,9 +104,9 @@ namespace formtest1
                 bakiye += carPrices[key];
                 lblBakiye.Text = bakiye.ToString();
             }
-            else
+            else if(lbxCart.SelectedItem == null)
             {
-                MessageBox.Show("Lütfen çýkarýlacak aracý seçiniz.");
+                Console.WriteLine("Çýkartýlacak ürünü seçiniz.");
             }
             if (lbxCart.Items.Count == 0)
             {
@@ -116,11 +117,19 @@ namespace formtest1
                 lbxProducts.Items.Add(lbxCart.SelectedItem);
                 lbxCart.Items.Remove(lbxCart.SelectedItem);
             }
+            if (lbxCart.Items.Count == 0)
+            {
+                btnRemoveFromCart.Enabled = false;
+            }
+            if (lbxCart.Items.Count == 0)
+            {
+                btnRemoveAllInCart.Enabled = false;
+            }
         }
 
         private void btnRemoveAllInCart_Click(object sender, EventArgs e)
         {
-            if(lbxCart.Items.Count != 0)
+            if (lbxCart.Items.Count != 0)
             {
                 foreach (var item in lbxCart.Items)
                 {
@@ -141,7 +150,16 @@ namespace formtest1
                 lbxProducts.Items.AddRange(lbxCart.Items);
                 lbxCart.Items.Clear();
             }
+            if (lbxCart.Items.Count == 0)
+            {
+                btnRemoveAllInCart.Enabled = false;
+            }
+            if (lbxCart.Items.Count == 0)
+            {
+                btnRemoveFromCart.Enabled = false;
+            }
         }
+
 
         private void lbxCart_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -151,6 +169,14 @@ namespace formtest1
         private void bakiye_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            ListViewItem item = new ListViewItem("BMW");
+            item.ImageKey = "bmw.jpg";
+            listView1.Items.Add(item);
         }
     }
 }
