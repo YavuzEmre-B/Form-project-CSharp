@@ -98,7 +98,6 @@ namespace formtest1
         private void btnRemoveFromCart_Click(object sender, EventArgs e)
         {
             string key = lbxCart.SelectedItem.ToString();
-
             if (carPrices.ContainsKey(key))
             {
                 bakiye += carPrices[key];
