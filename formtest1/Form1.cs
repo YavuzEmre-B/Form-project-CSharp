@@ -1,4 +1,5 @@
 using formtest1.Properties;
+using System.Reflection.Emit;
 using System.Windows.Forms;
 
 namespace formtest1
@@ -19,11 +20,15 @@ namespace formtest1
 
         private void lbxProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            timer1.Start();
+            lblTarih.Text = DateTime.Now.ToLongDateString();
+            lblSaat.Text = DateTime.Now.ToLongTimeString();
+
             var productText = "Araçlar";
             var addToCartText = "Sepete Ekle";
             var cartText = "Sepet";
@@ -37,8 +42,6 @@ namespace formtest1
             btnRemoveFromCart.Text = removeFromCartText;
             btnRemoveAllInCart.Text = removeAllFromCartText;
             lblBakiye.Text = bakiye.ToString();
-
-
 
             string[] products = new string[] { "BMW", "Mercedes", "Audi", "Volkswagen", "Fiat", "Renault", "Peugeot", "Opel", "Ford", "Toyota" };
 
@@ -68,27 +71,33 @@ namespace formtest1
 
         private void btnAddToCart_Click(object sender, EventArgs e)
         {
-            string key = lbxProducts.SelectedItem.ToString();
-            if (lbxProducts.SelectedItem != null && carPrices[key] < bakiye)
+
+            if (lbxProducts.SelectedItem != null)
             {
-                lbxCart.Items.Add(lbxProducts.SelectedItem);
+                string key = lbxProducts.SelectedItem.ToString();
                 btnRemoveFromCart.Enabled = true;
                 btnRemoveAllInCart.Enabled = true;
-                if (carPrices.ContainsKey(key))
+                if (carPrices[key] < bakiye)
                 {
-                    bakiye -= carPrices[key];
-                    lblBakiye.Text = bakiye.ToString();
+                    if (carPrices.ContainsKey(key))
+                    {
+                        bakiye -= carPrices[key];
+                        lblBakiye.Text = bakiye.ToString();
+                    }
+                    lbxCart.Items.Add(lbxProducts.SelectedItem);
+                    lbxProducts.Items.Remove(lbxProducts.SelectedItem);
+
                 }
-            }
-            else if (carPrices[key] > bakiye)
-            {
-                MessageBox.Show("Bakiyeniz yetersiz.");
+                else if (carPrices[key] > bakiye)
+                {
+                    MessageBox.Show("Bakiyeniz yetersiz.");
+                }
             }
             else
             {
                 MessageBox.Show("Lütfen bir araç seçiniz.");
             }
-            lbxProducts.Items.Remove(lbxProducts.SelectedItem);
+
         }
 
         private void lblCart_Click(object sender, EventArgs e)
@@ -98,25 +107,22 @@ namespace formtest1
 
         private void btnRemoveFromCart_Click(object sender, EventArgs e)
         {
-            string key = lbxCart.SelectedItem.ToString();
-            if (carPrices.ContainsKey(key))
+            if (lbxCart.SelectedItem != null)
             {
-                bakiye += carPrices[key];
-                lblBakiye.Text = bakiye.ToString();
-            }
-            else if(lbxCart.SelectedItem == null)
-            {
-                Console.WriteLine("Çýkartýlacak ürünü seçiniz.");
-            }
-            if (lbxCart.Items.Count == 0)
-            {
-                btnRemoveFromCart.Enabled = false;
-            }
-            if (lbxCart.Items.Count != 0)
-            {
+                string key = lbxCart.SelectedItem.ToString();
+                if (carPrices.ContainsKey(key))
+                {
+                    bakiye += carPrices[key];
+                    lblBakiye.Text = bakiye.ToString();
+                }
                 lbxProducts.Items.Add(lbxCart.SelectedItem);
                 lbxCart.Items.Remove(lbxCart.SelectedItem);
             }
+            else
+            {
+                MessageBox.Show("Lütfen çýkartýlcak aracý seçiniz.");
+            }
+
             if (lbxCart.Items.Count == 0)
             {
                 btnRemoveFromCart.Enabled = false;
@@ -174,9 +180,12 @@ namespace formtest1
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            ListViewItem item = new ListViewItem("BMW");
-            item.ImageKey = "bmw.jpg";
-            listView1.Items.Add(item);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblTarih.Text = DateTime.Now.ToLongDateString();
+            lblSaat.Text = DateTime.Now.ToLongTimeString();
         }
     }
 }

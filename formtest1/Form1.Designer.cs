@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             lbxProducts = new ListBox();
             lblProducts = new Label();
             btnAddToCart = new Button();
@@ -38,18 +37,22 @@
             btnRemoveFromCart = new Button();
             btnRemoveAllInCart = new Button();
             lblBakiye = new Label();
-            listView1 = new ListView();
-            ımageList1 = new ImageList(components);
+            lblSaat = new Label();
+            lblTarih = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lbxProducts
             // 
             lbxProducts.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lbxProducts.FormattingEnabled = true;
-            lbxProducts.ItemHeight = 21;
-            lbxProducts.Location = new Point(31, 81);
+            lbxProducts.ItemHeight = 28;
+            lbxProducts.Location = new Point(35, 108);
+            lbxProducts.Margin = new Padding(3, 4, 3, 4);
             lbxProducts.Name = "lbxProducts";
-            lbxProducts.Size = new Size(123, 172);
+            lbxProducts.Size = new Size(239, 228);
             lbxProducts.TabIndex = 0;
             lbxProducts.SelectedIndexChanged += lbxProducts_SelectedIndexChanged;
             // 
@@ -57,18 +60,19 @@
             // 
             lblProducts.AutoSize = true;
             lblProducts.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblProducts.Location = new Point(31, 45);
+            lblProducts.Location = new Point(35, 60);
             lblProducts.Name = "lblProducts";
-            lblProducts.Size = new Size(52, 21);
+            lblProducts.Size = new Size(65, 28);
             lblProducts.TabIndex = 1;
             lblProducts.Text = "label1";
             lblProducts.Click += lblProducts_Click;
             // 
             // btnAddToCart
             // 
-            btnAddToCart.Location = new Point(31, 259);
+            btnAddToCart.Location = new Point(35, 345);
+            btnAddToCart.Margin = new Padding(3, 4, 3, 4);
             btnAddToCart.Name = "btnAddToCart";
-            btnAddToCart.Size = new Size(123, 23);
+            btnAddToCart.Size = new Size(239, 31);
             btnAddToCart.TabIndex = 2;
             btnAddToCart.Text = "button1";
             btnAddToCart.UseVisualStyleBackColor = true;
@@ -78,10 +82,11 @@
             // 
             lbxCart.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lbxCart.FormattingEnabled = true;
-            lbxCart.ItemHeight = 21;
-            lbxCart.Location = new Point(174, 81);
+            lbxCart.ItemHeight = 28;
+            lbxCart.Location = new Point(280, 108);
+            lbxCart.Margin = new Padding(3, 4, 3, 4);
             lbxCart.Name = "lbxCart";
-            lbxCart.Size = new Size(123, 172);
+            lbxCart.Size = new Size(212, 228);
             lbxCart.TabIndex = 3;
             lbxCart.SelectedIndexChanged += lbxCart_SelectedIndexChanged;
             // 
@@ -89,18 +94,19 @@
             // 
             lblCart.AutoSize = true;
             lblCart.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCart.Location = new Point(174, 45);
+            lblCart.Location = new Point(199, 60);
             lblCart.Name = "lblCart";
-            lblCart.Size = new Size(52, 21);
+            lblCart.Size = new Size(65, 28);
             lblCart.TabIndex = 4;
             lblCart.Text = "label1";
             lblCart.Click += lblCart_Click;
             // 
             // btnRemoveFromCart
             // 
-            btnRemoveFromCart.Location = new Point(174, 259);
+            btnRemoveFromCart.Location = new Point(280, 344);
+            btnRemoveFromCart.Margin = new Padding(3, 4, 3, 4);
             btnRemoveFromCart.Name = "btnRemoveFromCart";
-            btnRemoveFromCart.Size = new Size(123, 23);
+            btnRemoveFromCart.Size = new Size(212, 31);
             btnRemoveFromCart.TabIndex = 5;
             btnRemoveFromCart.Text = "button1";
             btnRemoveFromCart.UseVisualStyleBackColor = true;
@@ -108,9 +114,10 @@
             // 
             // btnRemoveAllInCart
             // 
-            btnRemoveAllInCart.Location = new Point(174, 290);
+            btnRemoveAllInCart.Location = new Point(280, 383);
+            btnRemoveAllInCart.Margin = new Padding(3, 4, 3, 4);
             btnRemoveAllInCart.Name = "btnRemoveAllInCart";
-            btnRemoveAllInCart.Size = new Size(123, 23);
+            btnRemoveAllInCart.Size = new Size(212, 31);
             btnRemoveAllInCart.TabIndex = 6;
             btnRemoveAllInCart.Text = "button1";
             btnRemoveAllInCart.UseVisualStyleBackColor = true;
@@ -120,35 +127,53 @@
             // 
             lblBakiye.AutoSize = true;
             lblBakiye.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblBakiye.Location = new Point(702, 28);
+            lblBakiye.Location = new Point(802, 37);
             lblBakiye.Name = "lblBakiye";
-            lblBakiye.Size = new Size(52, 21);
+            lblBakiye.Size = new Size(65, 28);
             lblBakiye.TabIndex = 7;
             lblBakiye.Text = "label1";
             lblBakiye.Click += bakiye_Click;
             // 
-            // listView1
+            // lblSaat
             // 
-            listView1.Location = new Point(350, 81);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(392, 232);
-            listView1.TabIndex = 8;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
+            lblSaat.AutoSize = true;
+            lblSaat.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblSaat.Location = new Point(647, 475);
+            lblSaat.Name = "lblSaat";
+            lblSaat.Size = new Size(50, 20);
+            lblSaat.TabIndex = 8;
+            lblSaat.Text = "label1";
             // 
-            // ımageList1
+            // lblTarih
             // 
-            ımageList1.ColorDepth = ColorDepth.Depth8Bit;
-            ımageList1.ImageStream = (ImageListStreamer)resources.GetObject("ımageList1.ImageStream");
-            ımageList1.TransparentColor = Color.Transparent;
-            ımageList1.Images.SetKeyName(0, "bmw.jpg");
+            lblTarih.AutoSize = true;
+            lblTarih.Location = new Point(715, 475);
+            lblTarih.Name = "lblTarih";
+            lblTarih.Size = new Size(50, 20);
+            lblTarih.TabIndex = 9;
+            lblTarih.Text = "label2";
+            // 
+            // timer1
+            // 
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(498, 108);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(369, 306);
+            pictureBox1.TabIndex = 10;
+            pictureBox1.TabStop = false;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(789, 448);
-            Controls.Add(listView1);
+            ClientSize = new Size(902, 597);
+            Controls.Add(pictureBox1);
+            Controls.Add(lblTarih);
+            Controls.Add(lblSaat);
             Controls.Add(lblBakiye);
             Controls.Add(btnRemoveAllInCart);
             Controls.Add(btnRemoveFromCart);
@@ -157,9 +182,11 @@
             Controls.Add(btnAddToCart);
             Controls.Add(lblProducts);
             Controls.Add(lbxProducts);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Rent a car";
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -174,7 +201,9 @@
         private Button btnRemoveFromCart;
         private Button btnRemoveAllInCart;
         private Label lblBakiye;
-        private ListView listView1;
-        private ImageList ımageList1;
+        private Label lblSaat;
+        private Label lblTarih;
+        private System.Windows.Forms.Timer timer1;
+        private PictureBox pictureBox1;
     }
 }
