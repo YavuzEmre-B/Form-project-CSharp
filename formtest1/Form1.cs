@@ -20,8 +20,26 @@ namespace formtest1
 
         private void lbxProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            string selectedProduct = lbxProducts.SelectedItem as string; 
+            if (selectedProduct != null)
+            {
+                string imagePath = Path.Combine("C:\\Users\\Emre\\Source\\Repos\\YavuzEmre-B\\Form-project-CSharp\\formtest1\\Resources", selectedProduct + ".jpg");
+                if (File.Exists(imagePath))
+                {
+                    pictureBox1.Image = Image.FromFile(imagePath);
+                }
+                else
+                {
+                    MessageBox.Show("Resim bulunamadý: " + imagePath); 
+                    pictureBox1.Image = null; 
+                }
+            }
+            else
+            {
+                pictureBox1.Image = null;
+            }
         }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -97,6 +115,8 @@ namespace formtest1
             {
                 MessageBox.Show("Lütfen bir araç seçiniz.");
             }
+            pictureBox1.Image = null;
+
 
         }
 
@@ -186,6 +206,25 @@ namespace formtest1
         {
             lblTarih.Text = DateTime.Now.ToLongDateString();
             lblSaat.Text = DateTime.Now.ToLongTimeString();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            string selectedProduct = lbxProducts.SelectedItem.ToString(); // Seçilen ürünü alýn
+
+            // Seçilen ürünün adýna uygun resim dosyasýnýn yolunu oluþturun
+            string imagePath = Path.Combine("Resources", selectedProduct + ".jpg");
+
+            if (File.Exists(imagePath))
+            {
+                // PictureBox kontrolüne resmi yükle
+                pictureBox1.Image = Image.FromFile(imagePath);
+            }
+            else
+            {
+                // Resim bulunamazsa bir hata mesajý gösterin veya varsayýlan bir resim gösterin
+                pictureBox1.Image = null; // Veya bir varsayýlan resim yükleyin
+            }
         }
     }
 }

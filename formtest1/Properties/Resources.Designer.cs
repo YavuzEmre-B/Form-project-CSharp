@@ -10,9 +10,8 @@
 
 namespace formtest1.Properties {
     using System;
-    using System.Drawing;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -24,7 +23,7 @@ namespace formtest1.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        internal static Image bmw;
+        
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
@@ -64,9 +63,9 @@ namespace formtest1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _79ef2e2109a782aa2ae9d000ec4afed7fd560add_full {
+        internal static System.Drawing.Bitmap bmw {
             get {
-                object obj = ResourceManager.GetObject("79ef2e2109a782aa2ae9d000ec4afed7fd560add_full", resourceCulture);
+                object obj = ResourceManager.GetObject("bmw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
