@@ -162,10 +162,6 @@ namespace formtest1
                     }
                 }
             }
-            if (lbxCart.Items.Count == 0)
-            {
-                btnRemoveAllInCart.Enabled = false;
-            }
             if (lbxCart.Items.Count != 0)
             {
                 lbxProducts.Items.AddRange(lbxCart.Items);
@@ -174,10 +170,8 @@ namespace formtest1
             if (lbxCart.Items.Count == 0)
             {
                 btnRemoveAllInCart.Enabled = false;
-            }
-            if (lbxCart.Items.Count == 0)
-            {
                 btnRemoveFromCart.Enabled = false;
+
             }
             pictureBox1.Image = null;
         }
