@@ -20,7 +20,7 @@ namespace formtest1
 
         private void lbxProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedProduct = lbxProducts.SelectedItem as string; 
+            string selectedProduct = lbxProducts.SelectedItem as string;
             if (selectedProduct != null)
             {
                 string imagePath = Path.Combine("C:\\Users\\Emre\\Source\\Repos\\YavuzEmre-B\\Form-project-CSharp\\formtest1\\Resources", selectedProduct + ".jpg");
@@ -30,8 +30,8 @@ namespace formtest1
                 }
                 else
                 {
-                    MessageBox.Show("Resim bulunamadý: " + imagePath); 
-                    pictureBox1.Image = null; 
+                    MessageBox.Show("Resim bulunamadý: " + imagePath);
+                    pictureBox1.Image = null;
                 }
             }
             else
@@ -93,8 +93,8 @@ namespace formtest1
             if (lbxProducts.SelectedItem != null)
             {
                 string key = lbxProducts.SelectedItem.ToString();
-                btnRemoveFromCart.Enabled = true;
                 btnRemoveAllInCart.Enabled = true;
+                btnRemoveFromCart.Enabled = true;
                 if (carPrices[key] < bakiye)
                 {
                     if (carPrices.ContainsKey(key))
@@ -116,8 +116,6 @@ namespace formtest1
                 MessageBox.Show("Lütfen bir araç seçiniz.");
             }
             pictureBox1.Image = null;
-
-
         }
 
         private void lblCart_Click(object sender, EventArgs e)
@@ -129,6 +127,7 @@ namespace formtest1
         {
             if (lbxCart.SelectedItem != null)
             {
+                btnRemoveFromCart.Enabled = true;
                 string key = lbxCart.SelectedItem.ToString();
                 if (carPrices.ContainsKey(key))
                 {
@@ -140,15 +139,11 @@ namespace formtest1
             }
             else
             {
-                MessageBox.Show("Lütfen çýkartýlcak aracý seçiniz.");
+                MessageBox.Show("Lütfen çýkartýlacak aracý seçiniz.");
             }
-
             if (lbxCart.Items.Count == 0)
             {
                 btnRemoveFromCart.Enabled = false;
-            }
-            if (lbxCart.Items.Count == 0)
-            {
                 btnRemoveAllInCart.Enabled = false;
             }
         }
@@ -184,12 +179,30 @@ namespace formtest1
             {
                 btnRemoveFromCart.Enabled = false;
             }
+            pictureBox1.Image = null;
         }
 
 
         private void lbxCart_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string selectedCart = lbxCart.SelectedItem as string;
+            if (selectedCart != null)
+            {
+                string imagePath = Path.Combine("C:\\Users\\Emre\\Source\\Repos\\YavuzEmre-B\\Form-project-CSharp\\formtest1\\Resources", selectedCart + ".jpg");
+                if (File.Exists(imagePath))
+                {
+                    pictureBox1.Image = Image.FromFile(imagePath);
+                }
+                else
+                {
+                    MessageBox.Show("Resim bulunamadý: " + imagePath);
+                    pictureBox1.Image = null;
+                }
+            }
+            else
+            {
+                pictureBox1.Image = null;
+            }
         }
 
         private void bakiye_Click(object sender, EventArgs e)
