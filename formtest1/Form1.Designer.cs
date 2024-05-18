@@ -72,7 +72,7 @@
             btnAddToCart.Name = "btnAddToCart";
             btnAddToCart.Size = new Size(209, 23);
             btnAddToCart.TabIndex = 2;
-            btnAddToCart.Text = "button1";
+            btnAddToCart.Text = "--";
             btnAddToCart.UseVisualStyleBackColor = true;
             btnAddToCart.Click += btnAddToCart_Click;
             // 
